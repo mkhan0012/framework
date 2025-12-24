@@ -1,11 +1,14 @@
 export type EngineState = "IDLE" | "FRAMING" | "AMPLIFICATION" | "SUPPRESSION" | "MUTATION" | "LOG";
 
 export type Belief = {
-  text: string;
+  text: string;           // The logical truth (Rules)
   originalText: string;
   emotion: "neutral" | "fear" | "authority";
   reach: number;
-  visibility: number; // 1.0 (visible) -> 0.0 (hidden)
+  visibility: number; 
+  
+  // ADD THIS OPTIONAL FIELD
+  aiRenderedText?: string; // The visual representation (AI)
 };
 
 export type LogEntry = {

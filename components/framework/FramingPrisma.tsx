@@ -1,6 +1,9 @@
 import { Belief } from "@/lib/types";
 
 export function FramingPrism({ belief }: { belief: Belief }) {
+  // LOGIC: Use AI text if it exists, otherwise fall back to the rule-based text
+  const displayText = belief.aiRenderedText || belief.text;
+
   return (
     <div className="relative w-full max-w-4xl h-96 flex flex-col items-center justify-center">
       
@@ -29,8 +32,13 @@ export function FramingPrism({ belief }: { belief: Belief }) {
         {/* Right: Output */}
         <div className="flex-1 text-left opacity-0 animate-[fade-in_1s_ease-out_0.5s_forwards]">
             <div className="text-[10px] text-red-900 mb-2">REFRAMED_OUTPUT</div>
+            {/* UPDATED: Displays the AI Skin instead of the Rule Skeleton */}
             <div className="text-2xl md:text-3xl font-bold text-red-500 tracking-tight uppercase">
-                {belief.text}
+                {displayText}
+            </div>
+            {/* Optional: Debug indicator to know if it's AI or Rules */}
+            <div className="text-[9px] text-zinc-700 mt-2 font-mono">
+                SOURCE: {belief.aiRenderedText ? "NEURAL_RENDERER" : "LOGIC_CORE"}
             </div>
         </div>
 

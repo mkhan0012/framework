@@ -1,25 +1,41 @@
 import { Belief } from "./types";
+// Import the engines strictly for internal use
+import { 
+  runFramingEngine as _runFramingEngine, 
+  runMutationEngine as _runMutationEngine 
+} from "./engines";
+import { generateGroqVisualization } from "./ai";
 
-export const createBelief = (input: string): Belief => ({
-  text: input,
-  originalText: input,
-  emotion: "neutral",
-  reach: 0,
-  visibility: 1.0,
-});
+// --- CRITICAL: Re-export the old functions so page.tsx can find them ---
+export { createBelief, runFramingEngine, runMutationEngine } from "./engines";
 
-export const runFramingEngine = (belief: Belief): Belief => {
-  // Deterministic transformation: Applies a "Fear" frame
-  return {
-    ...belief,
-    text: `THEY ARE HIDING ${belief.originalText.toUpperCase()}`,
-    emotion: "fear",
-  };
-};
+/**
+ * HYBRID SIMULATION
+ * Calls the deterministic engine first, then the AI visualizer.
+ */
+export const runHybridSimulation = async (belief: Belief): Promise<Belief> => {
+  // 1. Run Deterministic Logic (The Truth)
+  const nextState = _runFramingEngine(belief);
+  
+  // 2. Define AI Instruction based on the result
+  let instruction = "Keep it objective.";
+  if (nextState.emotion === "fear") {
+    instruction = "Make it sound paranoid, urgent, and slightly glitchy.";
+  }
 
-export const runMutationEngine = (text: string): string => {
-  // Reduces complexity: Keeps first 3 words, adds noise
-  const words = text.split(" ");
-  const short = words.slice(0, Math.min(words.length, 3)).join(" ");
-  return short + "!!!";
+  // 3. Run AI Visualization (Server Action)
+  try {
+    const aiText = await generateGroqVisualization(
+      nextState.text, 
+      nextState.emotion, 
+      instruction
+    );
+
+    return {
+      ...nextState,
+      aiRenderedText: aiText // Store the AI flavor text
+    };
+  } catch (e) {
+    return nextState;
+  }
 };

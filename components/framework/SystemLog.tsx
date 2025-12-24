@@ -7,11 +7,13 @@ interface SystemLogProps {
 }
 
 export function SystemLog({ initialInput, finalBelief, onReset }: SystemLogProps) {
+  // LOGIC: Select the best version of the text
+  const finalOutput = finalBelief.aiRenderedText || finalBelief.text;
+
   return (
     <div className="font-mono text-sm w-full max-w-xl animate-in fade-in slide-in-from-bottom-8 duration-1000">
       
       <div className="w-full border border-zinc-800 bg-zinc-950 p-8 relative overflow-hidden">
-        {/* Decorative Grid */}
         <div className="absolute top-0 right-0 p-4 opacity-20">
             <div className="w-16 h-16 border border-zinc-700 grid grid-cols-4 grid-rows-4"></div>
         </div>
@@ -43,9 +45,9 @@ export function SystemLog({ initialInput, finalBelief, onReset }: SystemLogProps
 
             <LogItem 
                 label="04. FINAL MUTATION" 
-                value={finalBelief.text} 
+                value={finalOutput} 
                 valueColor="text-white font-bold text-lg border-l-2 border-white pl-4 mt-2"
-                sub="Survival Optimized Variant"
+                sub={finalBelief.aiRenderedText ? "Source: Generative Layer" : "Source: Deterministic Rule"}
             />
         </div>
 
