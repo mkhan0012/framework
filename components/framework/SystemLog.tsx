@@ -8,28 +8,66 @@ interface SystemLogProps {
 
 export function SystemLog({ initialInput, finalBelief, onReset }: SystemLogProps) {
   return (
-    <div className="font-mono text-sm w-full max-w-lg animate-in fade-in duration-1000">
-      <div className="border-l border-zinc-800 pl-6 space-y-8">
-        <div>
-          <div className="text-zinc-600 text-[10px] uppercase tracking-widest mb-2">Original Input</div>
-          <div className="text-zinc-400">{initialInput}</div>
-        </div>
-        <div>
-          <div className="text-zinc-600 text-[10px] uppercase tracking-widest mb-2">Framing Vector</div>
-          <div className="text-[#ff3333]">FEAR_AUTONOMY</div>
-        </div>
-        <div>
-          <div className="text-zinc-600 text-[10px] uppercase tracking-widest mb-2">Final Output</div>
-          <div className="text-white font-bold text-lg">{finalBelief.text}</div>
-        </div>
-      </div>
+    <div className="font-mono text-sm w-full max-w-xl animate-in fade-in slide-in-from-bottom-8 duration-1000">
       
-      <button 
-        onClick={onReset} 
-        className="mt-16 text-zinc-600 hover:text-white hover:border-white transition-all text-[10px] uppercase tracking-[0.2em] border border-zinc-800 px-8 py-3"
-      >
-        Reset System
-      </button>
+      <div className="w-full border border-zinc-800 bg-zinc-950 p-8 relative overflow-hidden">
+        {/* Decorative Grid */}
+        <div className="absolute top-0 right-0 p-4 opacity-20">
+            <div className="w-16 h-16 border border-zinc-700 grid grid-cols-4 grid-rows-4"></div>
+        </div>
+
+        <h3 className="text-xs uppercase tracking-widest text-zinc-500 mb-8 border-b border-zinc-900 pb-4">
+            SIMULATION_REPORT_LOG_#8821
+        </h3>
+
+        <div className="space-y-8">
+            <LogItem 
+                label="01. ORIGINAL INPUT" 
+                value={initialInput} 
+                sub="Source: User Input"
+            />
+            
+            <LogItem 
+                label="02. APPLIED FRAME" 
+                value="FEAR_VECTOR [Heavy]" 
+                valueColor="text-red-500"
+                sub="Engine: FramingPrism v1.0"
+            />
+
+            <LogItem 
+                label="03. PEAK REACH" 
+                value={`${finalBelief.reach.toLocaleString()} NODES`} 
+                valueColor="text-blue-500"
+                sub="Engine: AmplificationNetwork"
+            />
+
+            <LogItem 
+                label="04. FINAL MUTATION" 
+                value={finalBelief.text} 
+                valueColor="text-white font-bold text-lg border-l-2 border-white pl-4 mt-2"
+                sub="Survival Optimized Variant"
+            />
+        </div>
+
+        <div className="mt-12 pt-8 border-t border-zinc-900 flex justify-between items-center">
+             <div className="text-[10px] text-zinc-700">END OF LINE.</div>
+             <button 
+                onClick={onReset} 
+                className="text-xs uppercase tracking-widest text-zinc-400 hover:text-white hover:underline transition-colors"
+             >
+                [ RESET SYSTEM ]
+             </button>
+        </div>
+
+      </div>
     </div>
   );
 }
+
+const LogItem = ({ label, value, sub, valueColor = "text-zinc-300" }: any) => (
+    <div>
+        <div className="text-[10px] text-zinc-600 mb-1">{label}</div>
+        <div className={valueColor}>{value}</div>
+        {sub && <div className="text-[10px] text-zinc-700 mt-1">{sub}</div>}
+    </div>
+)
