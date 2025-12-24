@@ -1,29 +1,25 @@
 import { Belief } from "./types";
-// Import the engines strictly for internal use
 import { 
   runFramingEngine as _runFramingEngine, 
-  runMutationEngine as _runMutationEngine 
+  createBelief as _createBelief 
 } from "./engines";
-import { generateGroqVisualization } from "./ai";
+import { generateGroqVisualization, generateDeepAnalysis } from "./ai"; // <--- IMPORT IT HERE
 
-// --- CRITICAL: Re-export the old functions so page.tsx can find them ---
+// --- CRITICAL: EXPORT EVERYTHING THE UI NEEDS ---
 export { createBelief, runFramingEngine, runMutationEngine } from "./engines";
+export { generateDeepAnalysis }; // <--- EXPORT IT HERE
 
-/**
- * HYBRID SIMULATION
- * Calls the deterministic engine first, then the AI visualizer.
- */
-export const runHybridSimulation = async (belief: Belief): Promise<Belief> => {
-  // 1. Run Deterministic Logic (The Truth)
+export const runHybridSimulation = async (belief: Belief, entropy: number = 50): Promise<Belief> => {
+  // 1. Run Deterministic Logic
   const nextState = _runFramingEngine(belief);
   
-  // 2. Define AI Instruction based on the result
+  // 2. Define AI Instruction
   let instruction = "Keep it objective.";
   if (nextState.emotion === "fear") {
     instruction = "Make it sound paranoid, urgent, and slightly glitchy.";
   }
 
-  // 3. Run AI Visualization (Server Action)
+  // 3. AI Layer
   try {
     const aiText = await generateGroqVisualization(
       nextState.text, 
@@ -33,7 +29,7 @@ export const runHybridSimulation = async (belief: Belief): Promise<Belief> => {
 
     return {
       ...nextState,
-      aiRenderedText: aiText // Store the AI flavor text
+      aiRenderedText: aiText 
     };
   } catch (e) {
     return nextState;

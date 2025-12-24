@@ -1,17 +1,19 @@
 export type EngineState = "IDLE" | "FRAMING" | "AMPLIFICATION" | "SUPPRESSION" | "MUTATION" | "LOG";
 
+export type FramingVector = "FEAR" | "OUTRAGE" | "VALIDATION" | "CONFUSION";
+
 export type Belief = {
-  text: string;           // The logical truth (Rules)
+  text: string;
   originalText: string;
-  emotion: "neutral" | "fear" | "authority";
+  emotion: "neutral" | "fear" | "authority" | "anger" | "confusion";
   reach: number;
-  visibility: number; 
-  
-  // ADD THIS OPTIONAL FIELD
-  aiRenderedText?: string; // The visual representation (AI)
+  visibility: number;
+  vector?: FramingVector; // <--- ADDED
+  aiRenderedText?: string;
 };
 
 export type LogEntry = {
   timestamp: string;
   message: string;
+  note?: string;
 };

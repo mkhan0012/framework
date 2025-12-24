@@ -30,13 +30,11 @@ export const SectionHero = () => {
   return (
     <section className="min-h-screen flex flex-col justify-center items-center p-8 bg-black relative overflow-hidden text-center border-b border-zinc-900">
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
-      
       <div className={`transition-all duration-1000 delay-300 ${loaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>
         <h1 className="text-4xl md:text-7xl font-bold tracking-tighter text-white mb-8 max-w-5xl leading-tight">
           TRUTH IS NOT BROKEN.<br/>IT IS ENGINEERED.
         </h1>
       </div>
-
       <div className={`transition-all duration-1000 delay-700 ${loaded ? "opacity-100" : "opacity-0"}`}>
         <p className="text-sm md:text-base text-zinc-500 font-mono max-w-xl mx-auto leading-relaxed">
           What you believe did not arrive untouched. It passed through systems built to shape it, reward it, distort it, and harden it.
@@ -49,7 +47,6 @@ export const SectionHero = () => {
 // --- 2. ORIGIN ---
 export const SectionOrigin = () => {
   const [ref, isVisible] = useOnScreen({ threshold: 0.2 });
-
   return (
     <section ref={ref} className="py-32 px-8 border-t border-zinc-900 bg-black">
       <div className={`max-w-4xl mx-auto transition-all duration-1000 ${isVisible ? "opacity-100" : "opacity-0"}`}>
@@ -61,9 +58,6 @@ export const SectionOrigin = () => {
                 <h2 className="text-2xl font-bold text-white mb-6">How this project began</h2>
                 <p className="text-zinc-400 leading-relaxed mb-6">
                     I didn’t start with three projects. I started with a question: <span className="text-zinc-200 italic">“If people are fighting online, why does every argument feel predictable?”</span>
-                </p>
-                <p className="text-zinc-400 leading-relaxed">
-                    That led to: <span className="text-zinc-200 italic">“What if belief doesn’t evolve by logic — but by survival?”</span>
                 </p>
             </div>
             <div className="flex flex-col justify-center space-y-4 font-mono text-sm">
@@ -98,7 +92,7 @@ export const SectionTrio = () => {
         <section ref={ref} className="py-32 px-8 border-t border-zinc-900 bg-black">
              <div className={`max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-0 border border-zinc-800 transition-all duration-1000 ${isVisible ? "opacity-100" : "opacity-0"}`}>
                 <TrioCard num="01" title="ARGUELY" sub="Truth Under Conflict" desc="A pressure chamber where beliefs collide." color="text-red-500" mode="CONFLICT OPTIMIZATION" link="https://debate-again.vercel.app" />
-                <TrioCard num="02" title="TRUTH IS OPTIONAL" sub="Truth Under Perception" desc="Information shifts as you scroll. Context disappears." color="text-purple-500" mode="PERCEPTION DISTORTION" link="https://truthis-optional.vercel.app" />
+                <TrioCard num="02" title="TRUTH IS OPTIONAL" sub="Truth Under Perception" desc="Information shifts as you scroll." color="text-purple-500" mode="PERCEPTION DISTORTION" link="https://truthis-optional.vercel.app" />
                 <TrioCard num="03" title="FRAMEWORK" sub="Truth Under Systems" desc="The root layer. It simulates the environment that decides which beliefs survive." color="text-blue-500" mode="SURVIVAL MECHANICS" active />
              </div>
         </section>
@@ -143,19 +137,15 @@ const PipelineStep = ({ label, desc, sub, color, text }: any) => (
     </div>
 )
 
-// --- 6. MECHANIC (Explains the Hybrid Engine) ---
+// --- 6. MECHANIC ---
 export const SectionMechanic = () => {
   const [ref, isVisible] = useOnScreen({ threshold: 0.4 });
-
   return (
     <section ref={ref} className="py-32 px-8 bg-black border-t border-zinc-900">
         <div className={`max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center transition-all duration-1000 ${isVisible ? "opacity-100" : "opacity-0"}`}>
             <div>
                 <h2 className="text-4xl font-bold text-white mb-8">What Framework Actually Simulates</h2>
-                <p className="text-zinc-400 text-lg leading-relaxed mb-8">
-                    Framework models four mechanical processes: Framing, Amplification, Suppression, and Mutation. 
-                    It visualizes why certain beliefs refuse to die.
-                </p>
+                <p className="text-zinc-400 text-lg leading-relaxed mb-8">Framework models four mechanical processes: Framing, Amplification, Suppression, and Mutation. It visualizes why certain beliefs refuse to die.</p>
                 <div className="space-y-4">
                     <MechanicItem label="Deterministic Core" desc="Mathematical rules control the simulation. No hallucination." />
                     <MechanicItem label="AI Visualization" desc="AI is used only to render the text. It does not decide the outcome." />
@@ -182,25 +172,24 @@ const MechanicItem = ({ label, desc }: any) => (
     </div>
 )
 
-// --- 7. SCHEMATIC (The 2D Interactive Model) ---
+// --- 7. SCHEMATIC (2D Interactive) ---
 export const SectionSchematic = () => {
     const [ref, isVisible] = useOnScreen({ threshold: 0.4 });
     const [hoveredNode, setHoveredNode] = useState<string | null>(null);
 
     const DESCRIPTIONS: any = {
-        CORE: "The System Core. Determines survival based on structural fitness.",
-        FRAMING: "Increases emotional weight. Reweights neutral facts.",
-        AMPLIFICATION: "Selects propagation routes. Optimization for virality.",
-        SUPPRESSION: "Reduces visibility through friction rather than removal.",
-        MUTATION: "Compresses belief into a survival form.",
-        TIO: "Output to Perception Layer. Distortion applied.",
-        ARGUELY: "Output to Conflict Layer. Rigidity increased."
+        CORE: "SYSTEM ROLE: INFRASTRUCTURE PRIORITIZATION. Determines which variants remain.",
+        FRAMING: "FUNCTION: ENGAGEMENT REBALANCING. Reweights emotional salience.",
+        AMPLIFICATION: "FUNCTION: PROPAGATION SELECTION. Expands signal reach.",
+        SUPPRESSION: "FUNCTION: STABILITY PRESERVATION. Reduces visibility through friction.",
+        MUTATION: "FUNCTION: SURVIVAL OPTIMIZATION. Simplifies and emotionalizes.",
+        TIO: "OUTPUT: PERCEPTION LAYER. Distortion applied.",
+        ARGUELY: "OUTPUT: CONFLICT LAYER. Rigidity increased."
     };
 
     return (
         <section ref={ref} className="min-h-screen bg-black flex flex-col items-center justify-center p-8 border-t border-zinc-900 relative">
-             <div className="text-xs uppercase tracking-widest text-zinc-500 mb-12">Interactive System Model</div>
-
+             <div className="text-xs uppercase tracking-widest text-zinc-500 mb-12">System Map [ Hover Nodes ]</div>
              <div className={`relative w-[300px] h-[300px] md:w-[500px] md:h-[500px] transition-opacity duration-1000 ${isVisible ? "opacity-100" : "opacity-0"}`}>
                 <svg className="absolute inset-0 w-full h-full z-0 pointer-events-none stroke-zinc-800" strokeWidth="1">
                     <line x1="50%" y1="50%" x2="50%" y2="15%" strokeDasharray="5,5" />
@@ -210,17 +199,7 @@ export const SectionSchematic = () => {
                     <line x1="50%" y1="15%" x2="20%" y2="20%" />
                     <line x1="50%" y1="85%" x2="80%" y2="80%" />
                 </svg>
-
-                {/* CENTRAL NODE */}
-                <div 
-                    onMouseEnter={() => setHoveredNode("CORE")}
-                    onMouseLeave={() => setHoveredNode(null)}
-                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-24 bg-black border border-blue-500 rounded-full flex items-center justify-center z-10 cursor-crosshair hover:bg-blue-900/20 transition-colors"
-                >
-                    <div className="text-[10px] text-blue-500 font-bold">CORE</div>
-                </div>
-
-                {/* NODES */}
+                <Node pos="top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" label="CORE" id="CORE" color="border-blue-500 text-blue-500" setHover={setHoveredNode} />
                 <Node pos="top-0 left-1/2 -translate-x-1/2" label="FRAMING" id="FRAMING" setHover={setHoveredNode} />
                 <Node pos="bottom-0 left-1/2 -translate-x-1/2" label="SUPPRESSION" id="SUPPRESSION" setHover={setHoveredNode} />
                 <Node pos="left-0 top-1/2 -translate-y-1/2" label="AMPLIFICATION" id="AMPLIFICATION" setHover={setHoveredNode} />
@@ -228,15 +207,16 @@ export const SectionSchematic = () => {
                 <Node pos="top-[10%] left-[10%]" label="T.I.O" id="TIO" color="border-purple-500 text-purple-500" setHover={setHoveredNode} />
                 <Node pos="bottom-[10%] right-[10%]" label="ARGUELY" id="ARGUELY" color="border-red-500 text-red-500" setHover={setHoveredNode} />
              </div>
-
              <div className="h-24 mt-12 w-full max-w-md text-center">
                 {hoveredNode ? (
-                    <div className="animate-in fade-in duration-200">
-                        <div className="text-white font-bold mb-2">{hoveredNode}</div>
-                        <div className="text-zinc-400 text-sm font-mono">{DESCRIPTIONS[hoveredNode]}</div>
+                    <div className="animate-in fade-in duration-200 bg-zinc-900/50 border border-zinc-800 p-4">
+                        <div className="text-white font-bold mb-2 text-xs">{hoveredNode}</div>
+                        <div className="text-zinc-400 text-[10px] font-mono">{DESCRIPTIONS[hoveredNode]}</div>
                     </div>
                 ) : (
-                    <div className="text-zinc-700 text-xs font-mono uppercase">[ HOVER NODES TO REVEAL FUNCTION ]</div>
+                    <div className="text-zinc-700 text-[10px] font-mono uppercase tracking-widest">
+                        Status: Signal Transformation Active
+                    </div>
                 )}
              </div>
         </section>
@@ -253,36 +233,57 @@ const Node = ({ pos, label, id, color = "border-zinc-700 text-zinc-500", setHove
     </div>
 )
 
-// --- 8. FINAL & ENTRY ---
+// --- 8. CASE STUDY ---
+export const SectionCaseStudy = () => {
+    const [ref, isVisible] = useOnScreen({ threshold: 0.2 });
+    return (
+        <section ref={ref} className="py-32 px-8 border-t border-zinc-900 bg-zinc-900/5">
+            <div className={`max-w-3xl mx-auto transition-all duration-1000 ${isVisible ? "opacity-100" : "opacity-0"}`}>
+                <div className="text-xs text-zinc-500 uppercase tracking-widest mb-12">Project Case Study</div>
+                <h2 className="text-3xl font-bold text-white mb-8">Framework — Truth Under Systems</h2>
+                <p className="text-zinc-400 leading-relaxed mb-12">
+                    A conceptual simulation exploring how digital environments shape belief survival. 
+                    Framework models belief not as information, but as a structural outcome of system dynamics.
+                </p>
+                <div className="mt-16 pt-8 border-t border-zinc-800">
+                    <h4 className="text-sm font-bold text-white mb-4">Outcome</h4>
+                    <p className="text-zinc-400 italic">"Framework reframes belief: Not as a debate problem, but as an environmental survival process."</p>
+                </div>
+            </div>
+        </section>
+    )
+}
+
+// --- 9. MANIFESTO ---
+export const SectionManifesto = () => {
+    return (
+        <section className="py-32 px-8 bg-black border-t border-zinc-900 grid grid-cols-1 md:grid-cols-2 gap-16 max-w-6xl mx-auto">
+            <div>
+                <div className="text-xs text-green-700 uppercase tracking-widest mb-8">Ontology Map</div>
+                <ul className="space-y-4 font-mono text-xs text-zinc-500">
+                    <li className="flex justify-between border-b border-zinc-900 pb-2"><span>Belief Variant</span> <span className="text-zinc-300">A mutated form</span></li>
+                    <li className="flex justify-between border-b border-zinc-900 pb-2"><span>Survival Fitness</span> <span className="text-zinc-300">Persistence likelihood</span></li>
+                </ul>
+            </div>
+            <div>
+                <div className="text-xs text-zinc-500 uppercase tracking-widest mb-8">Philosophical Appendix</div>
+                <p className="text-zinc-400 text-sm leading-relaxed mb-6">Belief behaves less like knowledge and more like biology. Systems do not create belief distortion. They reward it.</p>
+            </div>
+        </section>
+    )
+}
+
+// --- 10. FINAL ---
 export const SectionFinal = ({ onEnter }: { onEnter: () => void }) => {
     return (
         <section className="py-32 px-8 bg-black border-t border-zinc-900 text-center">
-            <div className="max-w-3xl mx-auto mb-24">
-                <h2 className="text-sm text-zinc-500 mb-8 uppercase tracking-widest">What This Project Is Not</h2>
-                <p className="text-zinc-400 leading-relaxed mb-12">
-                    This trilogy is not an argument platform, a misinformation campaign study, or a political commentary. 
-                    It does not say what truth should be. It simply reveals: 
-                    <span className="text-white block mt-4">Truth becomes whatever survives the systems that carry it.</span>
-                </p>
-                <div className="inline-block border border-zinc-800 p-2 text-[10px] text-zinc-600 font-mono uppercase">
-                    MORAL OUTPUT: DISABLED
-                </div>
-            </div>
-
-            <div className="max-w-4xl mx-auto border-t border-zinc-900 pt-24">
+            <div className="max-w-4xl mx-auto">
                 <p className="text-xl md:text-3xl text-white font-light leading-relaxed mb-16">
                     Truth was never purely discovered. Truth was processed.<br/>
-                    Conflict shaped it. Perception filtered it. Infrastructure preserved it.<br/>
                     <span className="text-blue-500 font-bold block mt-8">And what survived became reality.</span>
                 </p>
-
-                <button 
-                    onClick={onEnter}
-                    className="group relative px-12 py-5 bg-zinc-950 border border-zinc-800 hover:border-blue-500 transition-all duration-500"
-                >
-                    <span className="text-xs font-mono uppercase tracking-[0.3em] text-zinc-400 group-hover:text-blue-500">
-                        Initialize Framework
-                    </span>
+                <button onClick={onEnter} className="group relative px-12 py-5 bg-zinc-950 border border-zinc-800 hover:border-blue-500 transition-all duration-500">
+                    <span className="text-xs font-mono uppercase tracking-[0.3em] text-zinc-400 group-hover:text-blue-500">Initialize Framework</span>
                 </button>
             </div>
         </section>
