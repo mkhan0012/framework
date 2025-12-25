@@ -22,7 +22,7 @@ const useOnScreen = (options: IntersectionObserverInit) => {
   return [ref, isVisible] as const;
 };
 
-// --- 1. HERO ---
+// --- 1. HERO (UPDATED: DEEP BLUE FRAMEWORK TEXT) ---
 export const SectionHero = () => {
   const [loaded, setLoaded] = useState(false);
   useEffect(() => { setLoaded(true); }, []);
@@ -30,13 +30,38 @@ export const SectionHero = () => {
   return (
     <section className="min-h-screen flex flex-col justify-center items-center p-8 bg-black relative overflow-hidden text-center border-b border-zinc-900">
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
-      <div className={`transition-all duration-1000 delay-300 ${loaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>
-        <h1 className="text-4xl md:text-7xl font-bold tracking-tighter text-white mb-8 max-w-5xl leading-tight">
-          TRUTH IS NOT BROKEN.<br/>IT IS ENGINEERED.
+      
+      {/* 1. FRAMEWORK IDENTITY (The Origin) */}
+      <div className={`transition-all duration-1000 ease-out mb-16 ${loaded ? "opacity-100 scale-100 blur-0" : "opacity-0 scale-90 blur-lg"}`}>
+        <div className="flex flex-col items-center">
+            {/* Subtitle */}
+            <span className="text-blue-500 font-mono text-xs md:text-sm tracking-[0.8em] uppercase font-bold mb-4 ml-2 animate-pulse">
+                The Origin
+            </span>
+            
+            {/* Massive Deep Blue Title */}
+            <h2 className="text-6xl md:text-9xl font-black tracking-tighter relative z-10 bg-clip-text text-transparent bg-gradient-to-b from-blue-500 via-blue-600 to-blue-900 pb-4">
+                FRAMEWORK
+                {/* Deep Blue Glow Effect */}
+                <div className="absolute inset-0 bg-blue-600 blur-[120px] opacity-20 -z-10 rounded-full" />
+            </h2>
+            
+            {/* Decorative Blue Line */}
+            <div className={`h-[1px] bg-gradient-to-r from-transparent via-blue-700 to-transparent w-full max-w-xs mt-6 transition-all duration-1000 delay-300 ${loaded ? "w-full max-w-xs opacity-100" : "w-0 opacity-0"}`} />
+        </div>
+      </div>
+
+      {/* 2. MAIN MANIFESTO (Delayed) */}
+      <div className={`transition-all duration-1000 delay-700 ${loaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+        <h1 className="text-2xl md:text-5xl font-bold tracking-tight text-zinc-300 mb-8 max-w-4xl leading-tight">
+          TRUTH IS NOT BROKEN.<br/>
+          <span className="text-white">IT IS ENGINEERED.</span>
         </h1>
       </div>
-      <div className={`transition-all duration-1000 delay-700 ${loaded ? "opacity-100" : "opacity-0"}`}>
-        <p className="text-sm md:text-base text-zinc-500 font-mono max-w-xl mx-auto leading-relaxed">
+
+      {/* 3. EXPLANATION (Last to appear) */}
+      <div className={`transition-all duration-1000 delay-1000 ${loaded ? "opacity-100" : "opacity-0"}`}>
+        <p className="text-xs md:text-sm text-zinc-500 font-mono max-w-lg mx-auto leading-relaxed border-t border-zinc-900 pt-8 mt-4">
           What you believe did not arrive untouched. It passed through systems built to shape it, reward it, distort it, and harden it.
         </p>
       </div>
@@ -61,9 +86,9 @@ export const SectionOrigin = () => {
                 </p>
             </div>
             <div className="flex flex-col justify-center space-y-4 font-mono text-sm">
-                <div className="p-4 border border-zinc-800 text-zinc-300"><span className="text-red-500 mr-2">1. Conflict</span> → Where beliefs are defended</div>
+                <div className="p-4 border border-zinc-800 text-zinc-300"><span className="text-blue-500 mr-2">1. Infrastructure</span> → Where beliefs survive</div>
                 <div className="p-4 border border-zinc-800 text-zinc-300"><span className="text-purple-500 mr-2">2. Perception</span> → Where beliefs are shaped</div>
-                <div className="p-4 border border-zinc-800 text-zinc-300"><span className="text-blue-500 mr-2">3. Infrastructure</span> → Where beliefs survive</div>
+                <div className="p-4 border border-zinc-800 text-zinc-300"><span className="text-red-500 mr-2">3. Conflict</span> → Where beliefs are defended</div>
             </div>
         </div>
       </div>
@@ -91,9 +116,33 @@ export const SectionTrio = () => {
     return (
         <section ref={ref} className="py-32 px-8 border-t border-zinc-900 bg-black">
              <div className={`max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-0 border border-zinc-800 transition-all duration-1000 ${isVisible ? "opacity-100" : "opacity-0"}`}>
-                <TrioCard num="01" title="ARGUELY" sub="Truth Under Conflict" desc="A pressure chamber where beliefs collide." color="text-red-500" mode="CONFLICT OPTIMIZATION" link="https://debate-again.vercel.app" />
-                <TrioCard num="02" title="TRUTH IS OPTIONAL" sub="Truth Under Perception" desc="Information shifts as you scroll." color="text-purple-500" mode="PERCEPTION DISTORTION" link="https://truthis-optional.vercel.app" />
-                <TrioCard num="03" title="FRAMEWORK" sub="Truth Under Systems" desc="The root layer. It simulates the environment that decides which beliefs survive." color="text-blue-500" mode="SURVIVAL MECHANICS" active />
+                <TrioCard 
+                    num="01" 
+                    title="FRAMEWORK" 
+                    sub="Truth Under Systems" 
+                    desc="The root layer. It simulates the environment that decides which beliefs survive." 
+                    color="text-blue-500" 
+                    mode="SURVIVAL MECHANICS" 
+                    active 
+                />
+                <TrioCard 
+                    num="02" 
+                    title="TRUTH IS OPTIONAL" 
+                    sub="Truth Under Perception" 
+                    desc="Information shifts as you scroll." 
+                    color="text-purple-500" 
+                    mode="PERCEPTION DISTORTION" 
+                    link="https://truthis-optional.vercel.app" 
+                />
+                <TrioCard 
+                    num="03" 
+                    title="ARGUELY" 
+                    sub="Truth Under Conflict" 
+                    desc="A pressure chamber where beliefs collide." 
+                    color="text-red-500" 
+                    mode="CONFLICT OPTIMIZATION" 
+                    link="https://debate-again.vercel.app" 
+                />
              </div>
         </section>
     )
