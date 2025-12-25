@@ -5,31 +5,70 @@
   --foreground: #e6e6e6;
   --accent-fear: #ff3333;
   --accent-auth: #3333ff;
+  
+  /* DEFAULT THEME (Dark/Red) */
+  --theme-bg: #050505;
+  --theme-text: #71717a; /* zinc-500 */
+  --theme-border: #27272a; /* zinc-800 */
+  --theme-primary: #ef4444; /* red-500 */
+}
+
+/* AMBER PHOSPHOR THEME */
+.theme-amber {
+  --theme-bg: #1a1200;
+  --theme-text: #fbbf24;
+  --theme-border: #78350f;
+  --theme-primary: #f59e0b;
+}
+
+/* MATRIX GREEN THEME */
+.theme-matrix {
+  --theme-bg: #020617; /* Slate 950 */
+  --theme-text: #22c55e;
+  --theme-border: #14532d;
+  --theme-primary: #4ade80;
+}
+
+/* HIGH CONTRAST THEME */
+.theme-white {
+  --theme-bg: #ffffff;
+  --theme-text: #000000;
+  --theme-border: #000000;
+  --theme-primary: #000000;
 }
 
 body {
-  background-color: var(--background);
-  color: var(--foreground);
+  background-color: var(--theme-bg);
+  color: var(--theme-text);
   font-family: 'Courier New', Courier, monospace;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
+  transition: background-color 0.5s ease, color 0.5s ease;
 }
+
+/* Utility Class for Theme Variables */
+.bg-theme-bg { background-color: var(--theme-bg); }
+.text-theme-text { color: var(--theme-text); }
+.border-theme-border { border-color: var(--theme-border); }
+.text-theme-primary { color: var(--theme-primary); }
+.border-theme-primary { border-color: var(--theme-primary); }
 
 /* Custom Easing */
-.ease-linear-system {
-  transition-timing-function: linear;
-}
-
-.ease-sharp {
-  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
-}
+.ease-linear-system { transition-timing-function: linear; }
+.ease-sharp { transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1); }
 
 /* Typewriter Cursor */
-.cursor-blink {
-  animation: blink 1s step-end infinite;
-}
+.cursor-blink { animation: blink 1s step-end infinite; }
+@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
-@keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
+/* CRT Scanline for Themes */
+.scanlines {
+  background: linear-gradient(
+    to bottom,
+    rgba(255,255,255,0),
+    rgba(255,255,255,0) 50%,
+    rgba(0,0,0,0.1) 50%,
+    rgba(0,0,0,0.1)
+  );
+  background-size: 100% 4px;
 }

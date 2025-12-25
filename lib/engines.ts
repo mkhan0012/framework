@@ -31,8 +31,9 @@ export const runFramingEngine = (belief: Belief): Belief => {
       emotion = "confusion";
       break;
     default:
-      prefix = "BREAKING: ";
-      emotion = "fear";
+      // Handle custom vectors if they are simple strings
+      prefix = `[${String(belief.vector).toUpperCase()} PROTOCOL]: `;
+      emotion = "custom";
   }
 
   return {
@@ -42,14 +43,16 @@ export const runFramingEngine = (belief: Belief): Belief => {
   };
 };
 
-// UPDATED: Now accepts an 'entropy' slider value (0-100)
+// UPDATED: Adjusted for higher retention (Longer Outputs)
 export const runMutationEngine = (text: string, entropy: number = 50): string => {
   const words = text.split(" ");
   
-  // High entropy = keep fewer words (more destruction)
-  // Low entropy = keep more words (more stability)
-  const retentionRate = Math.max(0.2, 1 - (entropy / 100)); 
-  const keepCount = Math.max(2, Math.floor(words.length * retentionRate));
+  // MODIFIED: Increased base retention.
+  // Old: Math.max(0.2, 1 - (entropy / 100)) -> Very destructive at high entropy
+  // New: Math.max(0.6, 1 - (entropy / 300)) -> Keeps at least 60%, entropy impact is 3x weaker
+  const retentionRate = Math.max(0.6, 1 - (entropy / 300)); 
+  
+  const keepCount = Math.max(5, Math.floor(words.length * retentionRate)); // Minimum 5 words
   
   const short = words.slice(0, keepCount).join(" ");
   
